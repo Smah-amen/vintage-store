@@ -1,4 +1,4 @@
-export const category = ["accessories", "clothing", "shoes", "bags", "jewelry"];
+export const category = ["all","accessories", "clothing", "shoes", "bags", "jewelry"];
 
 export const productData = [
   {
@@ -13,7 +13,7 @@ export const productData = [
   },
   {
     id: 2,
-    name: "Victorian Brooch Accessories",
+    name: "stylish Accessories",
     descraption:
       "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
     price: 100,
@@ -23,7 +23,7 @@ export const productData = [
   },
   {
     id: 3,
-    name: "Victorian Brooch Accessories",
+    name: "jewa Accessories",
     descraption:
       "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
     price: 100,

@@ -1,81 +1,34 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { CiSearch } from "react-icons/ci";
+
+import { productData, category } from "./commone/data/data";
 const ProductList = () => {
-  const data = [
-    {
-      id: 1,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "./acss1.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 2,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "./acss2.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 3,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "acss3.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 4,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "acss4.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 5,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "acss5.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 6,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "acss6.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 7,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "./acss1.jpg",
-      category: "Accessories",
-    },
-    {
-      id: 8,
-      name: "Victorian Brooch Accessories",
-      descraption:
-        "Handmade Collar Pin Pearl Cameo Madam For Women ,Female Ribbon Bow, Vintage Style Gift, Victorian Brooch Accessories, Elegant Office Fashion",
-      price: 100,
-      image: "./acss2.jpg",
-      category: "Accessories",
-    },
-  ];
+  const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [curentPage, setCurrentPage] = useState(1);
+
+  const itemPage = 5;
+
+  useEffect(() => {
+    setData(productData);
+  }, []);
+  const searchProduct = data.filter((item) => {
+    const searchProduct = item.name.includes(searchTerm);
+    const categoryMatch =
+      selectedCategory === "all" || item.category === selectedCategory;
+    return searchProduct && categoryMatch;
+  });
+const totalPages = Math.ceil(searchProduct.length / itemPage); // this is equation
+let page  = curentPage ;
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+  if (!page) {
+    page = 1;
+  }
+
   return (
     <section className="bg-[#f6f1eb] min-h-screen py-10 px-4">
       <div className="max-w-7xl mx-auto">
@@ -85,9 +38,36 @@ const ProductList = () => {
         >
           Vintage Accessories
         </h1>
+        <div className="flex justify-center mx-auto w-2xl  flex-row ">
+          <div className="relative w-96 mx-auto mb-8">
+            <CiSearch className="text-[#762342] text-2xl absolute right-3 top-1/2 transform -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search category"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-3 pr-1 py-2 border border-[#d8cbb3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#762342] transition duration-300"
+            />
+          </div>
+          <div
+            className=" mb-8 text-center text-[#762342] font-bold"
+            // style={{ fontFamily: "Fleur De Leah, cursive" }}
+          >
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {category.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}{" "}
+                </option>
+              ))}{" "}
+            </select>{" "}
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {data.map((item) => (
+          {searchProduct.map((item) => (
             <Link key={item.id} href={`/product/${item.id}`}>
               <div
                 key={item.id}
