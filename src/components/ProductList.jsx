@@ -123,7 +123,22 @@ const ProductList = () => {
           >
             <FaArrowAltCircleLeft />
           </button>
-
+          {[...Array(totalPages).keys()].map((_,i)=> {
+            const pageNum = i+ 1;
+            return (
+              <button
+                key={pageNum}
+                onClick={() => goToNextPage(pageNum)}
+                className={`px-3 py-2 cursor-pointer rounded-full mx-1 ${
+                  pageNum === page
+                    ? "bg-[#762342] text-white"
+                    : "bg-[#d8cbb3] text-[#762342]"
+                }`}
+              >
+                {pageNum}
+              </button>
+            );
+          })}
           <button
             disabled={page >= totalPages}
             onClick={() => goToNextPage(page + 1)}
