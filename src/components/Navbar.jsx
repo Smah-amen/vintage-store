@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { FaPhone } from "react-icons/fa6";
-import HeaderBasket from "./commone/HeaderBasket";
+import { GiShoppingCart } from "react-icons/gi";
 import { usePathname } from "next/navigation";
+import { CartContext } from "@/context/CartContext";
 
 function Navbar() {
   const nav = [
@@ -12,12 +13,8 @@ function Navbar() {
     { id: "3", name: "About-us", path: "/about-us" },
     { id: "4", name: "blogs", path: "/blogs" },
   ];
-  const [count, setCount] = useState(0);
 
-  const handelClick = () => {
-    setCount(count + 1);
-    console.log("clicked");
-  };
+  const { cart } = useContext(CartContext);
   const pathname = usePathname();
   const isActive = pathname == nav.path;
   return (
@@ -47,7 +44,14 @@ function Navbar() {
             </h1>
           </div>
 
-          <HeaderBasket count={count} handelClick={handelClick} />
+          <div className="relative flex items-center justify-center w-10 h-12  rounded-full ">
+            <button className="cursor-pointer">
+              <GiShoppingCart size={40} />
+              <span className="absolute top-0 right-0 bg-amber-50 text-inherit rounded-full px-1 py-1 text-sm">
+                {cart.length}
+              </span>
+            </button>
+          </div>
         </div>
 
         <nav className="mt-4  p-5 w-full max-w-6xl">
@@ -59,8 +63,8 @@ function Navbar() {
                   href={item.path}
                   className={
                     isActive
-                    ? "text-[#895f4c] text-2xl font-bold transition-colors hover:text-[#895f4c] underline"
-                    : "text-[#762342] text-2xl font-bold transition-colors  "
+                      ? "text-[#895f4c] text-2xl font-bold transition-colors hover:text-[#895f4c] underline"
+                      : "text-[#762342] text-2xl font-bold transition-colors  "
                   }
                 >
                   {item.name}

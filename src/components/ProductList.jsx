@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 
 import { productData, category } from "./commone/data/data";
+import { CartContext } from "@/context/CartContext";
 const ProductList = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,7 +46,7 @@ const ProductList = () => {
     }
     setCurrentPage(pageNum);
   };
-
+const {addToCart} = useContext(CartContext)
   return (
     <section className="bg-[#f6f1eb] min-h-screen py-10 px-4">
       <div className="max-w-7xl mx-auto">
@@ -109,6 +110,7 @@ const ProductList = () => {
                     ${item.price}
                   </p>
                 </div>
+                <button className="text-amber-300" onClick={addToCart}>add</button>
               </div>
             </Link>
           ))}
