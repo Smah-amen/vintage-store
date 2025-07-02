@@ -1,23 +1,28 @@
-import React from 'react';
+import React from "react";
+
 const HeroSection = () => {
-    return (
-      <div className="relative mb-4 w-full h-[620px] bg-gray-100">
-        <img src="hero5.jpg" alt="hero" className="w-full h-full object-cover" />
-  
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
-  
-       
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col items-start justify-center text-white px-4">
-          <h1
-          style={{ fontFamily: "Dancing Script, cursive" }}
-           className="text-4xl font-bold text-center">Rediscover Timeless Elegance</h1>
-          <p
-          
-           className="text-lg text-center italic mt-4">Explore unique vintage pieces that blend nostalgia with contemporary flair</p>
-        </div>
+  return (
+    <div className="relative w-full h-[670px] md:h-[750px] bg-gray-100">
+   
+      <img
+        src="/hero2.jpg" 
+        className="w-full h-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-black/45 "></div>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+        <h1 className="text-4xl md:text-3xl font-semibold tracking-wide mb-2">
+        The Best Fashion Photos From The 1950s        </h1>
+        <p className="text-2xl md:text-3xl italic font-light mb-2" >
+          Simon Porte Jacquemus
+        </p>
+        <p
+        
+         className="text-sm md:text-lg italic font-light  tracking-wider">paries</p>
       </div>
-    );
-  };
-  
-  export default HeroSection;
-  
+    </div>
+  );
+};
+
+export default HeroSection;
