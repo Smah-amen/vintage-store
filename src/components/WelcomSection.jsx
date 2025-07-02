@@ -1,22 +1,52 @@
-
 const WelcomeSection = () => {
-    return (
-        <div className=" mb-4 container mx-auto flex max-w-6xl  items-center justify-center h-[750px] ">
+  return (
+    <section className="bg-[#f4f3f1] py-16 px-4">
+      <div className="text-center mb-12">
+        <h2
+          style={{ fontFamily: "Fleur De Leah , cursive" }}
+          className="text-3xl md:text-4xl font-semibold text-gray-700 mb-2"
+        >
+          Styling
+        </h2>
+        <hr className="border-t border-gray-300 w-1/3 mx-auto" />
+      </div>
 
-          <div className="flex p-10  flex-row w-full h-full">
-      
-            <div className="w-1/2 h-full opacity-80">
-              <img src="hero.jpg" alt="hero" className="w-96 h-full object-cover  shadow-2xl rounded-2xl" />
-            </div>
-    
-        
-            <div className="w-1/2 h-full flex flex-col items-center justify-center  p-8">
-              <h1 className="text-4xl font-bold text-center">Welcome to Our Jewelry Store</h1>
-              <p className="text-lg text-center mt-4">Discover the perfect piece of jewelry for every occasion.</p>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-6xl mx-auto items-center">
+        <img
+          src="/ph1.jpg"
+          alt="earring"
+          className="w-full h-72 object-cover rounded-lg"
+        />
+        <img
+          src="/ph2.jpg"
+          alt="profile"
+          className="w-full h-72 object-cover rounded-lg"
+        />
+
+        <div className="text-center text-sm leading-7 tracking-wide text-gray-600 px-4">
+          <p>MAKEUP NATURAL</p>
+          <p>LOOK CASUAL</p>
+          <p>JOYERÍA DORADA</p>
+          <p>PENDIENTES LARGOS</p>
+          <p>ANILLOS</p>
+          <p>ZAPATOS CON PLATAFORMA</p>
+          <p>BOLSO TEJIDO</p>
+          <p>ESTILO MINIMALISTA</p>
         </div>
-      );
-    };
+
+        <img
+          src="/ph1.jpg"
+          alt="bag"
+          className="w-full h-72 object-cover rounded-lg"
+        />
+        <img
+          src="/ph2.jpg"
+          alt="rings"
+          className="w-full h-72 object-cover rounded-lg"
+        />
+      </div>
+    </section>
+  );
+};
 
 export default WelcomeSection;
