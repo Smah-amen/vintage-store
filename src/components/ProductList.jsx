@@ -2,11 +2,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
-import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 import { productData, category } from "./commone/data/data";
 import { CartContext } from "@/context/CartContext";
+
 const ProductList = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,125 +16,118 @@ const ProductList = () => {
   useEffect(() => {
     setData(productData);
   }, []);
-  // this for filtering the product by search and category
+
   const searchProduct = data.filter((item) => {
     const searchProduct = item.name.includes(searchTerm);
     const categoryMatch =
       selectedCategory === "all" || item.category === selectedCategory;
     return searchProduct && categoryMatch;
   });
-  // all of this for pagination
+
   const itemPage = 5;
-  const totalPages = Math.ceil(searchProduct.length / itemPage); // this is equation
+  const totalPages = Math.ceil(searchProduct.length / itemPage);
   let page = curentPage;
   if (page < 1) page = 1;
   if (page > totalPages) page = totalPages;
-  if (!page) {
-    page = 1;
-  }
-  const lastPageIndex = page * itemPage; // this is equation
-  const firstPageIndex = lastPageIndex - itemPage; // this is equation
-  const currentItems = searchProduct.slice(firstPageIndex, lastPageIndex); // this is equation
+  if (!page) page = 1;
 
-  
+  const lastPageIndex = page * itemPage;
+  const firstPageIndex = lastPageIndex - itemPage;
+  const currentItems = searchProduct.slice(firstPageIndex, lastPageIndex);
+
   const goToNextPage = (pageNum) => {
-    if (pageNum < 1) {
-      pageNum = 1;
-    }
-    if (pageNum > totalPages) {
-      pageNum = totalPages;
-    }
+    if (pageNum < 1) pageNum = 1;
+    if (pageNum > totalPages) pageNum = totalPages;
     setCurrentPage(pageNum);
   };
-const {addToCart} = useContext(CartContext)
+
+  const { addToCart } = useContext(CartContext);
+
   return (
-    <section className="bg-[#f6f1eb] min-h-screen py-10 px-4">
+    <section className="bg-white min-h-screen py-14 px-6">
       <div className="max-w-7xl mx-auto">
-        <h1
-          style={{ fontFamily: "Fleur De Leah, cursive" }}
-          className="text-4xl  text-center text-[#762342] mb-10"
-        >
-          Vintage Accessories
+        <h1 className="text-4xl font-semibold text-center text-gray-800 mb-12">
+          Explore Our Collection of Stylish Modern Desks
         </h1>
-        <div className="flex justify-center mx-auto w-2xl  flex-row ">
-          <div className="relative w-96 mx-auto mb-8">
-            <CiSearch className="text-[#762342] text-2xl absolute right-3 top-1/2 transform -translate-y-1/2" />
+
+        <div className="flex flex-wrap gap-4 justify-between items-center mb-10">
+          <div className="relative w-full max-w-sm">
+            <CiSearch className="text-gray-500 text-xl absolute right-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search category"
+              placeholder="Search products"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-3 pr-1 py-2 border border-[#d8cbb3] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#762342] transition duration-300"
+              className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
-          <div
-            className=" mb-8 text-center text-[#762342] font-bold"
-            // style={{ fontFamily: "Fleur De Leah, cursive" }}
-          >
+
+          <div className="w-full max-w-xs">
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full py-3 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               {category.map((cat) => (
                 <option key={cat} value={cat}>
-                  {cat}{" "}
+                  {cat}
                 </option>
-              ))}{" "}
-            </select>{" "}
+              ))}
+            </select>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentItems.map((item) => (
             <Link key={item.id} href={`/product/${item.id}`}>
-              <div
-                key={item.id}
-                className="bg-[#fdf8f2] h-[500px] border border-[#d8cbb3] rounded-lg shadow-md hover:shadow-lg transition duration-300 p-4"
-              >
-                <div className="w-full h-72">
+              <div className="bg-white rounded-xl  hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer">
+                <div className="w-full h-60 mb-4 overflow-hidden rounded-lg">
                   <img
                     src={item.image}
-                    className="h-full w-full object-cover rounded-md"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    alt={item.name}
                   />
                 </div>
-
-                <h2 className="text-xl font-bold text-[#762342] font-vintage mb-2">
+                <h2 className="text-lg font-semibold text-gray-800 mb-1">
                   {item.name}
                 </h2>
-                <div className="flex justify-between">
-                  <p className="text-sm text-[#5c4438] mb-2">
-                    {item.descraption.slice(0, 100)}...
-                  </p>
-
-                  <p className="text-lg text-[#895f4c] font-semibold mb-3">
+                <p className="text-sm text-gray-500 mb-2">
+                  {item.descraption.slice(0, 80)}...
+                </p>
+                <div className="flex justify-between items-center">
+                  <span className="text-indigo-600 font-bold text-base">
                     ${item.price}
-                  </p>
+                  </span>
+                  <button
+                    onClick={addToCart}
+                    className="text-sm text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
-                <button className="text-amber-300" onClick={addToCart}>add</button>
               </div>
             </Link>
           ))}
         </div>
-      </div>
-      <div>
-        <div className="flex justify-center mt-8">
+
+        <div className="flex justify-center mt-12 space-x-2">
           <button
             disabled={page <= 1}
             onClick={() => goToNextPage(page - 1)}
-            className="px-2 py-2 bg-[#762342] cursor-pointer text-white rounded-full mr-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
           >
-            <FaArrowAltCircleLeft />
+            <FaArrowAltCircleLeft className="text-gray-600" />
           </button>
-          {[...Array(totalPages).keys()].map((_,i)=> {
-            const pageNum = i+ 1;
+          {[...Array(totalPages).keys()].map((_, i) => {
+            const pageNum = i + 1;
             return (
               <button
                 key={pageNum}
                 onClick={() => goToNextPage(pageNum)}
-                className={`px-3 py-2 cursor-pointer rounded-full mx-1 ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center ${
                   pageNum === page
-                    ? "bg-[#762342] text-white"
-                    : "bg-[#d8cbb3] text-[#762342]"
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 {pageNum}
@@ -144,9 +137,9 @@ const {addToCart} = useContext(CartContext)
           <button
             disabled={page >= totalPages}
             onClick={() => goToNextPage(page + 1)}
-            className="px-2 py-2 bg-[#762342] cursor-pointer text-white rounded-full ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-full disabled:opacity-50"
           >
-            <FaArrowAltCircleRight />
+            <FaArrowAltCircleRight className="text-gray-600" />
           </button>
         </div>
       </div>
