@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
+import { GiShoppingCart } from "react-icons/gi";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 import { productData, category } from "./commone/data/data";
@@ -18,7 +19,9 @@ const ProductList = () => {
   }, []);
 
   const searchProduct = data.filter((item) => {
-    const searchProduct = item.name.includes(searchTerm);
+    const searchProduct = item.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const categoryMatch =
       selectedCategory === "all" || item.category === selectedCategory;
     return searchProduct && categoryMatch;
@@ -50,7 +53,9 @@ const ProductList = () => {
           Explore Our Collection of Stylish Modern Desks
         </h1>
 
-        <div className="flex flex-wrap gap-4 justify-between items-center mb-10">
+        {/* Search + Category */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-10">
+          {/* Search Input */}
           <div className="relative w-full max-w-sm">
             <CiSearch className="text-gray-500 text-xl absolute right-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -58,29 +63,33 @@ const ProductList = () => {
               placeholder="Search products"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
-          <div className="w-full max-w-xs">
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full py-3 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              {category.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {category.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full border transition-all duration-200 text-sm font-medium ${
+                  selectedCategory === cat
+                    ? "bg-black text-white border-black"
+                    : "text-gray-700 border-gray-300 hover:border-black"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
+        {/* Product Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentItems.map((item) => (
             <Link key={item.id} href={`/product/${item.id}`}>
-              <div className="bg-white rounded-xl  hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer">
+              <div className="bg-white rounded-xl hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer">
                 <div className="w-full h-60 mb-4 overflow-hidden rounded-lg">
                   <img
                     src={item.image}
@@ -100,9 +109,9 @@ const ProductList = () => {
                   </span>
                   <button
                     onClick={addToCart}
-                    className="text-sm text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md"
+                    className="text-2xl text-gray-700 hover:text-indigo-600 cursor-pointer px-2 py-1"
                   >
-                    Add to Cart
+                    <GiShoppingCart />
                   </button>
                 </div>
               </div>
@@ -110,6 +119,7 @@ const ProductList = () => {
           ))}
         </div>
 
+        {/* Pagination */}
         <div className="flex justify-center mt-12 space-x-2">
           <button
             disabled={page <= 1}
