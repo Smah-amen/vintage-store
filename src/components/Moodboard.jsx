@@ -1,11 +1,18 @@
 // components/Moodboard.tsx
 export default function Moodboard() {
     const images = [
-      { src: "/ph1.jpg", col: "col-span-2", row: "row-span-2" },
-      { src: "/acss2.jpg", col: "col-span-1", row: "row-span-1" },
-      { src: "/ph2.jpg", col: "col-span-3", row: "row-span-1" },
-      { src: "/acss4.jpg", col: "col-span-1", row: "row-span-2" },
+      { src: "/pic2.jpg", col: "col-span-2", row: "row-span-2" },
+      { src: "/pic3.jpg", col: "col-span-1", row: "row-span-1" },
+      { src: "/pic1.jpg", col: "col-span-3", row: "row-span-1" },
+      { src: "/pic4.jpg", col: "col-span-1", row: "row-span-2" },
+      { src: "/pic5.jpg", col: "col-span-1", row: "row-span-1" },
+      // { src: "/acss6.jpg", col: "col-span-1", row: "row-span-1" },
+      // { src: "/acss6.jpg", col: "col-span-1", row: "row-span-1" },
+      { src: "/pic2.jpg", col: "col-span-2", row: "row-span-2" },
+
       { src: "/acss5.jpg", col: "col-span-2", row: "row-span-1" },
+
+    
       { src: "/acss6.jpg", col: "col-span-1", row: "row-span-1" },
    
     ];
