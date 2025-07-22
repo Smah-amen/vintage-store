@@ -12,25 +12,33 @@ export default function Moodboard() {
   ];
 
   return (
-    <section className="bg-[#f4f0ed] py-16 px-4 text-center">
+    <section className="bg-[#f4f0ed] py-16 px-4 text-center overflow-hidden">
       <h2
+        data-aos="fade-left"
+        data-aos-delay="200"
         style={{ fontFamily: "Fleur De Leah , cursive" }}
         className=" text-8xl font-fleur mb-4"
       >
         Because elegance is timeless
-        <hr className="border-t border-gray-300 w-1/3 mx-auto" />
+        <hr className="border-t border-gray-300 w-1/5 mx-auto" />
       </h2>
 
       <p
         style={{ fontFamily: "Dancing Script, cursive" }}
         className="text-[#762342] max-w-xl text-3xl mx-auto mb-10"
       >
-        Embark on an exceptional journey with our pieces inspired by the charm of the past
+        Embark on an exceptional journey with our pieces inspired by the charm
+        of the past
       </p>
 
       <div className="grid grid-cols-6 auto-rows-[120px] md:auto-rows-[180px] gap-4 max-w-6xl mx-auto">
         {images.map((img, index) => (
-          <div key={index} className={`${img.col} ${img.row}`}>
+          <div
+            data-aos="fade-up"
+            data-aos-delay="300"
+            key={index}
+            className={`${img.col} ${img.row}`}
+          >
             <img
               src={img.src}
               alt={`mood-${index}`}

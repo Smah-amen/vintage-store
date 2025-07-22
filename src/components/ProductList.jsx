@@ -49,8 +49,12 @@ const ProductList = () => {
   return (
     <section className="bg-white min-h-screen py-14 px-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-semibold text-center text-gray-800 mb-12">
+        <h1
+          style={{ fontFamily: "Fleur De Leah , cursive" }}
+          className="text-6xl  text-center  mb-16"
+        >
           Explore Our Collection of Stylish Modern Desks
+          <hr className="border-t border-gray-300 w-1/2 mx-auto" />
         </h1>
 
         {/* Search + Category */}
@@ -63,7 +67,7 @@ const ProductList = () => {
               placeholder="Search products"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#762342]"
             />
           </div>
 
@@ -75,7 +79,7 @@ const ProductList = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full border transition-all duration-200 text-sm font-medium ${
                   selectedCategory === cat
-                    ? "bg-black text-white border-black"
+                    ? "bg-[#724a3d] text-white border-[#724a3d]"
                     : "text-gray-700 border-gray-300 hover:border-black"
                 }`}
               >
@@ -89,7 +93,11 @@ const ProductList = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentItems.map((item) => (
             <Link key={item.id} href={`/product/${item.id}`}>
-              <div className="bg-white rounded-xl hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer">
+              <div
+                data-aos="fade-left"
+                data-aos-delay="200"
+                className="bg-white rounded-xl hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer"
+              >
                 <div className="w-full h-60 mb-4 overflow-hidden rounded-lg">
                   <img
                     src={item.image}
@@ -104,12 +112,12 @@ const ProductList = () => {
                   {item.descraption.slice(0, 80)}...
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-indigo-600 font-bold text-base">
+                  <span className="text-[#724a3d] font-bold text-base">
                     ${item.price}
                   </span>
                   <button
                     onClick={addToCart}
-                    className="text-2xl text-gray-700 hover:text-indigo-600 cursor-pointer px-2 py-1"
+                    className="text-2xl text-gray-700 hover:text-[#724a3d] cursor-pointer px-2 py-1"
                   >
                     <GiShoppingCart />
                   </button>
@@ -136,7 +144,7 @@ const ProductList = () => {
                 onClick={() => goToNextPage(pageNum)}
                 className={`w-10 h-10 rounded-full flex items-center justify-center ${
                   pageNum === page
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-[#724a3d] text-white"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
