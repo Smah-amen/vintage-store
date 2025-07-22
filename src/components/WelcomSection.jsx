@@ -4,7 +4,7 @@ const WelcomeSection = () => {
       <div className="text-center mb-12">
         <h2
           style={{ fontFamily: "Fleur De Leah , cursive" }}
-          className="text-3xl md:text-4xl font-semibold text-gray-700 mb-2"
+          className="text-3xl md:text-6xl font-semibold mb-4"
         >
           Styling
         </h2>
@@ -23,7 +23,10 @@ const WelcomeSection = () => {
           className="w-full h-72 object-cover rounded-lg"
         />
 
-        <div className="text-center text-sm leading-7 tracking-wide text-gray-600 px-4">
+        <div
+          style={{ fontFamily: "Dancing Script, cursive" }}
+          className="text-center  text-[#762342] text-xl px-5"
+        >
           <p>MAKEUP NATURAL</p>
           <p>LOOK CASUAL</p>
           <p>JOYERÍA DORADA</p>
@@ -35,12 +38,12 @@ const WelcomeSection = () => {
         </div>
 
         <img
-          src="/ph1.jpg"
+          src="/pic11.jpg"
           alt="bag"
           className="w-full h-72 object-cover rounded-lg"
         />
         <img
-          src="/ph2.jpg"
+          src="/hero.jpg"
           alt="rings"
           className="w-full h-72 object-cover rounded-lg"
         />

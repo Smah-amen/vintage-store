@@ -22,6 +22,8 @@ export default function Moodboard() {
         className=" text-8xl font-fleur mb-4"
       >
         Because elegance is timeless
+        <hr className="border-t border-gray-300 w-1/3 mx-auto" />
+
       </h2>
       <p
         style={{ fontFamily: "Dancing Script, cursive" }}
