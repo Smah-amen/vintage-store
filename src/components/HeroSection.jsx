@@ -45,7 +45,7 @@ const HeroSection = () => {
         <div
           ref={imageRef}
           className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: "url(/copyhero1.jpg)" }}
+          style={{ backgroundImage: "url(/copyhero3.jpg)" }}
         >
         </div>
       </div>
