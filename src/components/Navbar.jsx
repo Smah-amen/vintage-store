@@ -19,6 +19,8 @@ function Navbar() {
 
   const [scrolled, setScrolled] = useState(false);
 
+  const isHomePage = pathname === "/";
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -27,28 +29,34 @@ function Navbar() {
       }
     };
 
-    document.addEventListener("scroll", handleScroll);
+    if (isHomePage) {
+      document.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      document.removeEventListener("scroll", handleScroll);
+      if (isHomePage) {
+        document.removeEventListener("scroll", handleScroll);
+      }
     };
-  }, [scrolled]); 
+  }, [isHomePage, scrolled]); 
 
-  const textColor = scrolled ? "text-[#762342]" : "text-white";
-  const activeLinkColor = scrolled ? "text-[#895f4c]" : "text-gray-200";
-  const headerBg = scrolled ? "bg-[#f4f0ed] shadow-md" : "bg-transparent";
-  const cartBg = scrolled ? "bg-amber-50" : "bg-white/80";
-  const cartTextColor = scrolled ? "text-inherit" : "text-black";
+  const isTransparent = isHomePage && !scrolled;
+
+  const textColor = isTransparent ? "text-white" : "text-[#762342]";
+  const activeLinkColor = isTransparent ? "text-gray-200" : "text-[#895f4c]";
+  const headerBg = isTransparent ? "bg-transparent" : "bg-[#f6f6f6] shadow-md";
+  const cartBg = isTransparent ? "bg-white/80" : "bg-amber-50";
+  const cartTextColor = isTransparent ? "text-black" : "text-inherit";
 
   return (
     <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${headerBg}`}>
       <div className="container mx-auto p-4 flex flex-col items-center">
         <div className="flex items-center justify-between space-x-10 w-full max-w-6xl">
           <div className="flex items-center space-x-3">
-            <span className={textColor}>
+            <span className={`transition-colors duration-300 ${textColor}`}>
               <FaPhone />
             </span>
-            <h1 className={`text-sm font-fleur font-bold transition-colors ${textColor}`}>
+            <h1 className={`text-sm font-fleur font-bold transition-colors duration-300 ${textColor}`}>
               +2 0123456789
             </h1>
           </div>
@@ -61,16 +69,16 @@ function Navbar() {
             />
             <h1
               style={{ fontFamily: "Fleur De Leah, cursive" }}
-              className={`text-4xl font-fleur font-bold ml-2 transition-colors ${textColor}`}
+              className={`text-4xl font-fleur font-bold ml-2 transition-colors duration-300 ${textColor}`}
             >
               Époque
             </h1>
           </div>
 
           <div className="relative flex items-center justify-center w-10 h-12 rounded-full">
-            <button className={`cursor-pointer transition-colors ${textColor}`}>
+            <button className={`cursor-pointer transition-colors duration-300 ${textColor}`}>
               <GiShoppingCart size={40} />
-              <span className={`absolute top-0 right-0 rounded-full px-2 py-1 text-xs transition-colors ${cartBg} ${cartTextColor}`}>
+              <span className={`absolute top-0 right-0 rounded-full px-2 py-1 text-xs transition-colors duration-300 ${cartBg} ${cartTextColor}`}>
                 {cart.length}
               </span>
             </button>
