@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import axios from "axios";
@@ -52,16 +52,20 @@ function Responsive() {
 
   return (
     <div data-aos="zoom-in" className="container mx-auto mb-10">
-      <h1 className="text-center text-4xl font-bold text-primary font-cursive mt-6 mb-7">
+      <h1
+        style={{ fontFamily: "Fleur De Leah , cursive" }}
+        className="text-center text-4xl font-bold text-primary font-cursive mt-6 mb-7"
+      >
         Testimonials
+        <hr className="border-t border-gray-300 w-1/5 mx-auto" />
       </h1>
       <div className="slider-container w-full">
         <Slider {...settings}>
           {data.slice(0, 7).map((item, index) => (
             <div key={item.id || index} className="px-4 pb-4">
               <div className="rounded-xl bg-gray-100 p-5 relative">
-                <div className="absolute top-0 right-0 text-black/5 text-[200px] font-serif">
-                  <BiSolidQuoteRight />
+                <div className="absolute top-0 right-0 text-black/5  font-serif">
+                  <BiSolidQuoteRight size={80} />
                 </div>
                 <div className="flex justify-start items-center mb-4">
                   <img
@@ -76,7 +80,10 @@ function Responsive() {
                     {item.test_body}
                   </p>
                   <div className="flex items-center justify-between flex-wrap">
-                    <p className="text-2xl font-bold text-black/60 font-cursive">
+                    <p
+                      style={{ fontFamily: "Dancing Script, cursive" }}
+                      className="text-2xl font-bold text-[#762342] font-cursive"
+                    >
                       {item.full_name}
                     </p>
                     <p className="text-base font-semibold text-black/60">
