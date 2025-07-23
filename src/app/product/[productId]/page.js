@@ -1,6 +1,7 @@
 'use client';
 
 import { productData } from '@/components/commone/data/data';
+import TestimonialsProduct from '@/components/TestimonialsProduct';
 import React, { useEffect, useState, use } from 'react';
 
 function ProductDetails({ params }) {
@@ -24,6 +25,7 @@ function ProductDetails({ params }) {
 
 
   return (
+    <>   
     <section className="min-h-screen bg-[#f6f1eb] p-10">
       <div className="max-w-4xl mx-auto bg-[#fdf8f2] border border-[#d8cbb3] rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
         <img
@@ -43,6 +45,8 @@ function ProductDetails({ params }) {
         </div>
       </div>
     </section>
+    <TestimonialsProduct/>
+    </>
   );
 }
 
