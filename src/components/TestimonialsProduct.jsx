@@ -52,7 +52,7 @@ function TestimonialsProduct() {
   return (
     <div data-aos="zoom-in" className="container mx-auto mb-10">
       <h1 className="text-center text-4xl font-bold text-primary font-cursive mt-6 mb-7">
-      Our Popular Coffee      </h1>
+      Our Popular       </h1>
       <div className="slider-container w-full">
         <Slider {...settings}>
           {data.slice(0, 7).map((item, index) => (
