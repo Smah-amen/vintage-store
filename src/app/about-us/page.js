@@ -56,7 +56,7 @@ function AboutUsPage() {
           style={{ backgroundImage: "url('/back.jpg')" }} 
         ></div>
         <div className="absolute inset-0 bg-black/50"></div>
-        <div ref={heroTitleRef} className="relative mt-24 md:mt-0 z-10 text-center">
+        <div ref={heroTitleRef} className="relative items-center top-20 md:mt-0 z-40 text-center">
           <h1 className="text-5xl md:text-7xl font-serif font-bold">
             The Heart of Époque
           </h1>
@@ -112,7 +112,7 @@ function AboutUsPage() {
           <section ref={behindScenesRef} className="relative h-[50vh] rounded-2xl overflow-hidden flex items-center justify-center text-center text-white p-8">
              <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out hover:scale-110"
-              style={{ backgroundImage: "url('/back1.jpg')" }}
+              style={{ backgroundImage: "url('/pic1.jpg')" }}
             ></div>
             <div className="absolute inset-0 bg-black/40"></div>
             <div className="relative z-10">
