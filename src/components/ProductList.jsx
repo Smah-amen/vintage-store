@@ -57,9 +57,7 @@ const ProductList = () => {
           <hr className="border-t border-gray-300 w-1/2 mx-auto" />
         </h1>
 
-        {/* Search + Category */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-10">
-          {/* Search Input */}
           <div className="relative w-full max-w-sm">
             <CiSearch className="text-gray-500 text-xl absolute right-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -71,7 +69,6 @@ const ProductList = () => {
             />
           </div>
 
-          {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-3">
             {category.map((cat) => (
               <button
@@ -89,45 +86,79 @@ const ProductList = () => {
           </div>
         </div>
 
-        {/* Product Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentItems.map((item) => (
             <Link key={item.id} href={`/product/${item.id}`}>
               <div
                 data-aos="fade-left"
                 data-aos-delay="200"
-                className="bg-white rounded-xl hover:shadow-lg transition-shadow duration-300 p-4 cursor-pointer"
+                className="group relative min-h-[550px] min-w-[320px] bg-white rounded-2xl  hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden "
               >
-                <div className="w-full h-60 mb-4 overflow-hidden rounded-lg">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {item.inStock !== undefined && (
+                  <div className="absolute top-4 left-4 z-10">
+                    {item.inStock ? (
+                      <div className="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                        In Stock
+                      </div>
+                    ) : (
+                      <div className="flex items-center bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        Out of Stock
+                      </div>
+                    )}
+                  </div>
+                )}
+
+          
+
+                <div className="relative overflow-hidden rounded-t-2xl h-64 bg-gray-100">
                   <img
                     src={item.image}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     alt={item.name}
                   />
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-1">
-                  {item.name}
-                </h2>
-                <p className="text-sm text-gray-500 mb-2">
-                  {item.descraption.slice(0, 80)}...
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-[#724a3d] font-bold text-base">
-                    ${item.price}
-                  </span>
-                  <button
-                    onClick={addToCart}
-                    className="text-2xl text-gray-700 hover:text-[#724a3d] cursor-pointer px-2 py-1"
-                  >
-                    <GiShoppingCart />
-                  </button>
+
+                <div className="relative p-6">
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-purple-700 transition-colors duration-300">
+                    {item.name}
+                  </h3>
+
+                  <p className="text-sm text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+                    {item.descraption || item.description}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        ${item.price}
+                      </span>
+                      <span className="text-xs text-gray-500">Best Price</span>
+                    </div>
+                    
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault(); 
+                        addToCart(item);
+                      }}
+                      className="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                    >
+                      <GiShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
+
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-purple-200 rounded-2xl transition-colors duration-300"></div>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Pagination */}
         <div className="flex justify-center mt-12 space-x-2">
           <button
             disabled={page <= 1}
@@ -166,3 +197,5 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+

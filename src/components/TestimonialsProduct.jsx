@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import axios from "axios";
-import { BiSolidQuoteRight } from "react-icons/bi";
+import { BiSolidQuoteRight, BiCheck, BiX } from "react-icons/bi";
+import { BsTag, BsShop } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { productData } from "./commone/data/data";
-  
+
 function TestimonialsProduct() {
   var settings = {
     dots: true,
@@ -34,14 +35,14 @@ function TestimonialsProduct() {
       },
     ],
   };
-
+  
   const [data, setData] = useState([]);
 
   const getData = async () => {
     try {
       setData(productData);
     } catch (err) {
-      setData([{ title: "Error", description: err.message }]);
+      setData([{ name: "Error", description: err.message }]);
     }
   };
 
@@ -50,45 +51,122 @@ function TestimonialsProduct() {
   }, []);
 
   return (
-    <div data-aos="zoom-in" className="container mx-auto mb-10">
-      <h1 className="text-center text-4xl font-bold text-primary font-cursive mt-6 mb-7">
-      Our Popular       </h1>
+    <div data-aos="zoom-in" className="container mx-auto mb-10 px-4">
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-300 to-blue-500 bg-clip-text text-transparent font-cursive mb-4">
+          Our Popular Products
+        </h1>
+        <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+        <p className="text-gray-600 mt-4 text-lg">Discover our handpicked collection of premium accessories</p>
+      </div>
+      
       <div className="slider-container w-full">
         <Slider {...settings}>
           {data.slice(0, 7).map((item, index) => (
             <div key={item.id || index} className="px-4 pb-4">
-              <div className="rounded-xl bg-gray-100 p-5 relative">
-                <div className="absolute top-0 right-0 text-black/5 text-[200px] font-serif">
-                  <BiSolidQuoteRight />
+              <div className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Stock status badge */}
+                <div className="absolute top-4 right-4 z-10">
+                  {item.inStock ? (
+                    <div className="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
+                      <BiCheck className="w-4 h-4 mr-1" />
+                      In Stock
+                    </div>
+                  ) : (
+                    <div className="flex items-center bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-semibold">
+                      <BiX className="w-4 h-4 mr-1" />
+                      Out of Stock
+                    </div>
+                  )}
                 </div>
-                <div className="flex justify-start items-center mb-4">
-                  <img
-                    src={item.image}
-                    className="w-24 h-24 rounded-full  "
-                    // alt={item.full_name}
-                  />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-600 mb-1">{item.ttitle}</p>
-                  <p className="text-xs text-gray-600 mb-3 line-clamp-4 h-12">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center justify-between flex-wrap">
-                    <p className="text-xl font-bold text-black/60 font-cursive">
-                      {item.ingredients}
-                    </p>
-                    <p className="text-base font-semibold text-black/60">
-                      {item.price} $
-                    </p>
+
+                <div className="absolute top-4 left-4 z-10">
+                  <div className="flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold capitalize">
+                    <BsTag className="w-3 h-3 mr-1" />
+                    {item.category}
                   </div>
                 </div>
+
+                <div className="relative overflow-hidden rounded-t-2xl h-64 bg-gray-100">
+                  <img
+                    src={item.image}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt={item.name}
+                  />
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                </div>
+
+                <div className="relative p-6">
+                  <div className="absolute top-0 right-0 text-blue-200  font-serif opacity-50 -mt-8 -mr-4">
+                    <BiSolidQuoteRight size={20} />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-purple-700 transition-colors duration-300">
+                    {item.name}
+                  </h3>
+
+                  <p className="text-sm text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+                    {item.descraption || item.description}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="flex flex-col">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        ${item.price}
+                      </span>
+                      <span className="text-xs text-gray-500">Best Price</span>
+                    </div>
+                    
+                    <button className="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                      <BsShop className="w-4 h-4 mr-2" />
+                      Shop Now
+                    </button>
+                  </div>
+                </div>
+
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-purple-200 rounded-2xl transition-colors duration-300"></div>
               </div>
             </div>
           ))}
         </Slider>
       </div>
+
+      <style jsx>{`
+        .slick-dots {
+          bottom: -50px;
+        }
+        
+        .slick-dots li button:before {
+          color: #8b5cf6;
+          font-size: 12px;
+          opacity: 0.5;
+        }
+        
+        .slick-dots li.slick-active button:before {
+          color: #8b5cf6;
+          opacity: 1;
+        }
+        
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </div>
   );
 }
 
-export default  TestimonialsProduct;
+export default TestimonialsProduct;
+

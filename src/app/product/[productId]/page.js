@@ -101,7 +101,8 @@ function ProductDetails({ params }) {
               <div className="overflow-hidden">
                 <h1
                   ref={(el) => el && textElementsRef.current.push(el)}
-                  className="text-4xl md:text-5xl text-[#762342] font-serif font-bold leading-tight"
+                  // className="text-4xl md:text-5xl text-[#762342] font-serif font-bold leading-tight"
+                  className="text-5xl font-bold bg-gradient-to-r from-pink-800 via-purple-950 to-blue-200 bg-clip-text text-transparent font-cursive"
                 >
                   {product.name}
                 </h1>
