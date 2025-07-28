@@ -124,7 +124,7 @@ const ProductList = () => {
                 </div>
 
                 <div className="relative p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-purple-700 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-[#61453b] mb-3 line-clamp-2 group-hover:text-[#c3846d] transition-colors duration-300">
                     {item.name}
                   </h3>
 
@@ -134,10 +134,9 @@ const ProductList = () => {
 
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div className="flex flex-col">
-                      <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-[#c3846d] to-pink-600 bg-clip-text text-transparent">
                         ${item.price}
                       </span>
-                      <span className="text-xs text-gray-500">Best Price</span>
                     </div>
                     
                     <button
@@ -145,7 +144,7 @@ const ProductList = () => {
                         e.preventDefault(); 
                         addToCart(item);
                       }}
-                      className="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                      className="flex items-center bg-gradient-to-r from-[#94685a] to-[#c3846d] hover:from-amber-200 hover:to-orange-200 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
                     >
                       <GiShoppingCart className="w-4 h-4 mr-2" />
                       Add to Cart

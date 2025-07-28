@@ -53,10 +53,10 @@ function TestimonialsProduct() {
   return (
     <div data-aos="zoom-in" className="container mx-auto mb-10 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-pink-300 to-blue-500 bg-clip-text text-transparent font-cursive mb-4">
+        <h1 className="text-5xl md:text-5xl text-[#762342] font-serif font-bold leading-tight">
           Our Popular Products
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-orange-100 mx-auto rounded-full"></div>
         <p className="text-gray-600 mt-4 text-lg">Discover our handpicked collection of premium accessories</p>
       </div>
       
@@ -65,10 +65,8 @@ function TestimonialsProduct() {
           {data.slice(0, 7).map((item, index) => (
             <div key={item.id || index} className="px-4 pb-4">
               <div className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100">
-                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
-                {/* Stock status badge */}
                 <div className="absolute top-4 right-4 z-10">
                   {item.inStock ? (
                     <div className="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
@@ -104,7 +102,7 @@ function TestimonialsProduct() {
                     <BiSolidQuoteRight size={20} />
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-purple-700 transition-colors duration-300">
+                  <h3 className="text-xl font-bold  text-[#61453b] mb-3 line-clamp-2 group-hover:text-[#c3846d] transition-colors duration-300">
                     {item.name}
                   </h3>
 
@@ -114,13 +112,12 @@ function TestimonialsProduct() {
 
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div className="flex flex-col">
-                      <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-[#c3846d] to-pink-600 bg-clip-text text-transparent">
                         ${item.price}
                       </span>
-                      <span className="text-xs text-gray-500">Best Price</span>
                     </div>
                     
-                    <button className="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                    <button className="flex items-center bg-gradient-to-r from-[#94685a] to-[#c3846d]  text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
                       <BsShop className="w-4 h-4 mr-2" />
                       Shop Now
                     </button>
