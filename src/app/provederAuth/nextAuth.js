@@ -7,6 +7,7 @@ export const authOptions = {
       
     })
     
+    
 
   ],
 
@@ -19,5 +20,6 @@ jwt :{
 },
 callbacks :{
   // async signIn({ user, account, profile, email, credentials }) { return true },
-}
+},
+secret : process.env.NEXTAUTH_SECRET
 }

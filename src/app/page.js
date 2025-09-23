@@ -3,8 +3,12 @@ import WelcomeSection from "@/components/WelcomSection";
 import ProductList from "@/components/ProductList";
 import Moodboard from "@/components/Moodboard";
 import Testimonials from "@/components/Testimonials";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./provederAuth/nextAuth";
 
-export default function Home() {
+export default async function Home() {
+  const {user} = await getServerSession(authOptions)
+  console.log(user)
   return (
     <div>
       <HeroSection />
