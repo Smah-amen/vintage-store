@@ -1,6 +1,4 @@
-import { SessionStore } from "next-auth/core/lib/cookie"
 import GoogleProvider from "next-auth/providers/google"
-import { getMaxAge } from "next/dist/server/image-optimizer"
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -22,5 +20,4 @@ jwt :{
 callbacks :{
   // async signIn({ user, account, profile, email, credentials }) { return true },
 }
-
 }
