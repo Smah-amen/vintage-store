@@ -4,16 +4,16 @@ import ProductList from "@/components/ProductList";
 import Moodboard from "@/components/Moodboard";
 import Testimonials from "@/components/Testimonials";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./provederAuth/nextAuth";
+import { authOptions } from "./lib/nextAuth";
 
 export default async function Home() {
-  const {user} = await getServerSession(authOptions)
-  console.log(user)
+  const { user } = await getServerSession(authOptions);
+  console.log(user);
   return (
     <div>
       <HeroSection />
       <WelcomeSection />
-      <Moodboard/>
+      <Moodboard />
       <ProductList />
       <Testimonials />
     </div>
