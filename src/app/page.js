@@ -7,8 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/nextAuth";
 
 export default async function Home() {
-  const { user } = await getServerSession(authOptions);
-  console.log(user);
+
   return (
     <div>
       <HeroSection />

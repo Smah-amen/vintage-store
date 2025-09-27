@@ -1,5 +1,5 @@
 import { users } from "../../lib/users.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export async function POST(req) {
   try {
