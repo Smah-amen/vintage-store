@@ -1,4 +1,4 @@
-import { users } from "../../lib/users.js";
+import  users  from "../../lib/users.js"; 
 import bcrypt from "bcryptjs";
 
 export async function POST(req) {

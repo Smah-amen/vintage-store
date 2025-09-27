@@ -11,6 +11,7 @@ export default function SignupPage() {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [apiError, setApiError] = useState("");
   const router = useRouter();
 
   const validateForm = () => {
@@ -51,8 +52,24 @@ export default function SignupPage() {
 
     if (!validateForm()) return;
 
-    console.log({ name, email, password });
-    router.push("/login");
+    try {
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setApiError(data.error || "Something went wrong");
+        return;
+      }
+
+      router.push("/");
+    } catch (err) {
+      setApiError("Network error, please try again");
+    }
   };
 
   return (
@@ -61,6 +78,8 @@ export default function SignupPage() {
         <h1 className="text-2xl font-serif text-center text-[#5b3a29] mb-6">
           Create Your Account
         </h1>
+
+        {apiError && <p className="text-red-500 text-center">{apiError}</p>}
 
         <form onSubmit={handleSignup} className="flex flex-col gap-4">
           <div>
