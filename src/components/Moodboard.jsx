@@ -1,4 +1,3 @@
-// components/Moodboard.tsx
 export default function Moodboard() {
   const images = [
     { src: "/pic2.jpg", col: "col-span-2", row: "row-span-2" },

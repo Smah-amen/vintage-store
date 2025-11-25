@@ -5,8 +5,8 @@ import { CiSearch } from "react-icons/ci";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
-import { productData, category } from "./commone/data/data"; // تأكد من صحة هذا المسار
-import { CartContext } from "@/context/CartContext"; // تأكد من صحة هذا المسار
+import { productData, category } from "./commone/data/data"; 
+import { CartContext } from "@/context/CartContext"; 
 
 const ProductList = () => {
   const [data, setData] = useState([]);
@@ -57,7 +57,6 @@ const ProductList = () => {
           <hr className="border-t border-gray-300 w-1/2 mx-auto" />
         </h1>
 
-        {/* Search and Filter UI */}
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-10">
           <div className="relative w-full max-w-sm">
             <CiSearch className="text-gray-500 text-xl absolute right-3 top-1/2 transform -translate-y-1/2" />
@@ -86,7 +85,6 @@ const ProductList = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentItems.map((item) => (
             <div
@@ -132,7 +130,6 @@ const ProductList = () => {
                 </div>
               </Link>
 
-              {/* Price and Add to Cart Button Section */}
               <div className="relative p-6 pt-0 mt-auto">
                 <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                   <div className="flex flex-col">
@@ -154,7 +151,6 @@ const ProductList = () => {
           ))}
         </div>
 
-        {/* Pagination */}
         <div className="flex justify-center mt-12 space-x-2">
           <button
             disabled={page <= 1}
